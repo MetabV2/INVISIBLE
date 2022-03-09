@@ -12,13 +12,13 @@ function setDisplayDistance(distance)
    for _,player in pairs(game.Players:GetPlayers()) do if player.Character and player.Character:FindFirstChildWhichIsA("Humanoid") then player.Character:FindFirstChildWhichIsA("Humanoid").NameDisplayDistance = distance player.Character:FindFirstChildWhichIsA("Humanoid").HealthDisplayDistance = distance end end
 end
 local tool = Instance.new("Tool", Backpack)
-tool.Name = "Ghostify [Disabled]"
+tool.Name = "OFF"
 tool.RequiresHandle = false
 tool.CanBeDropped = false
 tool.Equipped:Connect(function() wait()
    if not invisible then
        invisible = true
-       tool.Name = "Ghostify [Enabled]"
+       tool.Name = "ON"
        if handle then handle:Destroy() end if weld then weld:Destroy() end
        handle = Instance.new("Part", workspace) handle.Name = "Handle" handle.Transparency = 1 handle.CanCollide = false handle.Size = Vector3.new(2, 1, 1)
        weld = Instance.new("Weld", handle) weld.Part0 = handle weld.Part1 = Character.HumanoidRootPart weld.C0 = CFrame.new(0, offset-1.5, 0)
@@ -30,7 +30,7 @@ tool.Equipped:Connect(function() wait()
        for _,child in pairs(Backpack:GetChildren()) do if child:IsA("Tool") and child ~= tool then grips[child] = child.Grip end end
    elseif invisible then
        invisible = false
-       tool.Name = "Ghostify [Disabled]"
+       tool.Name = "OFF"
        if handle then handle:Destroy() end if weld then weld:Destroy() end
        for _,child in pairs(Character:GetChildren()) do if child:IsA("Tool") then child.Parent = Backpack end end
        for tool,grip in pairs(grips) do if tool then tool.Grip = grip end end
